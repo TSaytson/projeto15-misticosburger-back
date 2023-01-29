@@ -29,7 +29,7 @@ export async function getProducts(req, res){
     
                 console.log(error);
     
-                res.status(500).send(`Erro no servidor!`)
+                res.status(500).send(`Server error!`)
         }
 }
 
@@ -46,7 +46,26 @@ export async function deleteProduct(req, res){
 
             console.log(error);
 
-            res.status(500).send(`Erro no servidor!`)
+            res.status(500).send(`Server error!`)
     }
+}
+
+export async function updateProduct(req, res){
+    
+        const { id } = req.params;
+    
+        const { name, description, value, urlImage, type }= req.body;
+    
+        try {
+    
+            await db.collection("products").updateOne({_id: ObjectId(id)}, {$set: {name, description, value, urlImage, type}});
+            return res.status(200).send("Product successfully updated");
+            
+        } catch (error) {
+    
+                console.log(error);
+    
+                res.status(500).send(`Server error!`)
+        }
 }
 
