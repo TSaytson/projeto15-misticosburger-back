@@ -4,8 +4,8 @@ import { addProduct, getProducts, deleteProduct } from '../controllers/product.c
 
 const router = Router();
 
-router.post('/product', addProduct);
-router.get('/product', getProducts);
-router.delete('/product/:id', deleteProduct);
+router.post('/products', addProduct);
+router.get('/products', getProducts);
+router.delete('/products:id', deleteProduct);
 
 export default router;
