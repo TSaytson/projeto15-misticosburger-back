@@ -7,7 +7,7 @@ export async function addOrder(req, res){
 
     try {
 
-        await db.collection("orders").insertOne({newCart, total, userId: ObjectId(req.userId)});
+        await db.collection("orders").insertOne({newCart, total, userId});
         return res.status(201).send("New order successfully registered");
         
     } catch (error) {
@@ -23,6 +23,22 @@ export async function getOrders(req, res){
         try {
     
             const orders = await db.collection("orders").find().toArray();
+            return res.status(200).send(orders);
+            
+        } catch (error) {
+    
+                console.log(error);
+    
+                res.status(500).send(`Server error!`)
+        }
+}
+
+export async function getOrdersByUser(req, res){
+        
+        const { userId } = req.params;
+        try {
+    
+            const orders = await db.collection("orders").find({userId}).toArray();
             return res.status(200).send(orders);
             
         } catch (error) {
