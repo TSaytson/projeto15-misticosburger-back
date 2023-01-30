@@ -6,7 +6,7 @@ import { validateSchema } from "../middlewares/validadeSchema.js"
 
 const router = Router();
 
-router.post('/signUp', validateSchema(signUpSchema),signUp);
-router.post('/signIn',validateSchema(signInSchema), signIn);
+router.post('/sign-up', validateSchema(signUpSchema),signUp);
+router.post('/sign-in',validateSchema(signInSchema), signIn);
 
 export default router;
