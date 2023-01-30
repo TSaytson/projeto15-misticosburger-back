@@ -35,7 +35,7 @@ export async function signIn(req, res) {
 
         const userToken = await db.collection("sessions").findOne({ userId: user._id })
         if (userToken) {
-            return res.status(200).send({ name: user.name, token: userToken.token })
+            return res.status(200).send({ name: user.name, token: userToken.token, userId: user._id })
         }
 
         const token = uuid();
@@ -44,7 +44,7 @@ export async function signIn(req, res) {
             token
         })
 
-        res.status(200).send({ token, name: user.name });
+        res.status(200).send({ token, name: user.name, userId: user._id });
 
     } catch (err) {
         return res.status(500).send(err);
