@@ -48,3 +48,19 @@ export async function getOrdersByUser(req, res){
                 res.status(500).send(`Server error!`)
         }
 }
+
+export async function deleteOrder(req, res){
+    
+    const { orderId } = req.params;
+    try {
+
+        await db.collection("orders").deleteMany({});
+        return res.status(200).send("Order successfully deleted");
+        
+    } catch (error) {
+
+            console.log(error);
+
+            res.status(500).send(`Server error!`)
+    }
+}
